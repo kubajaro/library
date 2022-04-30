@@ -1,6 +1,7 @@
 package com.crud.library.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "register")
 public class Register {
@@ -16,4 +17,10 @@ public class Register {
     @ManyToOne
     @JoinColumn(name = "READER_ID")
     private Reader reader;
+
+    @Column(name = "borrow_date")
+    private Date borrowDate;
+
+    @Column(name = "return_date")
+    private Date returnDate;
 }

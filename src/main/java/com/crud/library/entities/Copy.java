@@ -1,5 +1,6 @@
 package com.crud.library.entities;
 
+import com.crud.library.enumvalues.CopyStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class Copy {
     private Book book;
 
     @Column(name = "status")
-    private String status;
+    private CopyStatus status;
 }

@@ -13,5 +13,5 @@ public class BookDto {
     private int id;
     private String title;
     private String author;
-    private Date publicationDate;
+    private int publicationYear;
 }

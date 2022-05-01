@@ -13,7 +13,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "book")
+@Entity
+@Table(name = "book", uniqueConstraints = @UniqueConstraint(name = "title_author", columnNames = {"title", "author"}))
 public class Book {
 
     @Id
@@ -30,13 +31,5 @@ public class Book {
 
     @NotNull
     @Column(name = "publication_year")
-    private Date publicationYear;
-
-    @OneToMany(
-            targetEntity = Copy.class,
-            mappedBy = "book",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    private List<Copy> copies = new ArrayList<>();
+    private int publicationYear;
 }

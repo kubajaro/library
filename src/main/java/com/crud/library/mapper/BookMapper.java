@@ -2,7 +2,12 @@ package com.crud.library.mapper;
 
 import com.crud.library.dto.BookDto;
 import com.crud.library.entities.Book;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
 public class BookMapper {
 
     public Book mapToBook(final BookDto bookDto) {
@@ -21,5 +26,11 @@ public class BookMapper {
                 book.getAuthor(),
                 book.getPublicationYear()
         );
+    }
+
+    public List<BookDto> mapToBookDtoList(final List<Book> books) {
+        return books.stream()
+                .map(this::mapToBookDto)
+                .collect(Collectors.toList());
     }
 }

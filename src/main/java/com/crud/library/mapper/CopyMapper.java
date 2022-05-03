@@ -4,11 +4,9 @@ import com.crud.library.dto.CopyDto;
 import com.crud.library.entities.Book;
 import com.crud.library.entities.Copy;
 import com.crud.library.enumvalues.CopyStatus;
-import com.crud.library.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

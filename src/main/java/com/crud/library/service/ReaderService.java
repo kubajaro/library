@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReaderDbService {
+public class ReaderService {
 
     private final ReaderRepository readerRepository;
 

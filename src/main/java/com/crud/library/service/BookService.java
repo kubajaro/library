@@ -10,15 +10,15 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BookDbService {
+public class BookService {
 
     private final BookRepository bookRepository;
 
     public List<Book> getAllBooks() {
-        return (List<Book>) bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
-    public Optional<Book> getBook(int id) {
+    public Optional<Book> getBook(int id) { //throws RunTimeException
         return bookRepository.findById(id);
     }
 

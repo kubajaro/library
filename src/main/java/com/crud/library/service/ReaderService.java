@@ -18,15 +18,15 @@ public class ReaderService {
         return (List<Reader>) readerRepository.findAll();
     }
 
-    public Optional<Reader> getReader(int id) {
-        return readerRepository.findById(id);
+    public Reader getReader(int id) throws Exception {
+        return readerRepository.findById(id).orElseThrow(Exception::new);
     }
 
     public Reader saveReader(Reader reader) {
         return readerRepository.save(reader);
     }
 
-    public void deleteReader(int id) {
+    public void deleteReader(int id){
         readerRepository.deleteById(id);
     }
 }

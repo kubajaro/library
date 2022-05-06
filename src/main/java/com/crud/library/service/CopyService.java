@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class CopyService {
         return copyRepository.save(copy);
     }
 
-    public int copiesOfBook(Book book) {
+    public int numberCopiesOfBook(Book book) {
         List<Copy> copiesOfBook = copyRepository.findAllByBook(book);
         return copiesOfBook.size();
     }

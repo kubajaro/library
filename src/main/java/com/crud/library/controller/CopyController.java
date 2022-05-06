@@ -12,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/copy")
 @RequiredArgsConstructor
@@ -43,6 +41,6 @@ public class CopyController {
     @GetMapping("{bookDto}")
     public ResponseEntity<Integer> bookCopiesCount(@PathVariable BookDto bookDto) {
         Book book = bookMapper.mapToBook(bookDto);
-        return ResponseEntity.ok(copyService.copiesOfBook(book));
+        return ResponseEntity.ok(copyService.numberCopiesOfBook(book));
     }
 }

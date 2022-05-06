@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/register")
 @RequiredArgsConstructor
@@ -31,9 +29,21 @@ public class RegisterController {
     public ResponseEntity<Void> createRegister(@RequestBody RegisterDto registerDto) throws Exception {
         Copy copy = copyService.findById(registerDto.getCopyId());
         Reader reader = readerService.getReader(registerDto.getReaderId());
-
         Register register = registerMapper.mapToRegister(registerDto, copy, reader);
 
+        registerService.saveRegister(register);
+
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<RegisterDto> returnBook(@RequestBody RegisterDto registerDto) throws Exception {
+        Copy copy = copyService.findById(registerDto.getCopyId());
+        Reader reader = readerService.getReader(registerDto.getReaderId());
+        Register register = registerMapper.mapToRegister(registerDto, copy, reader);
+
+        Register savedRegister = registerService.saveRegister(register);
+
+        return ResponseEntity.ok(registerMapper.mapToRegisterDto(savedRegister));
     }
 }

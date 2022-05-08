@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class CopyMapper {
 
     public Copy mapToCopy(final CopyDto copyDto, final Book book) {
-        CopyStatus copyStatus = CopyStatus.valueOf(copyDto.getStatus());
+        String copyStatus = copyDto.getStatus().toString();
        return new Copy(
                copyDto.getId(),
                book,
@@ -22,12 +22,11 @@ public class CopyMapper {
     }
 
     public CopyDto mapToCopyDto(final Copy copy) {
+        CopyStatus copyStatus = CopyStatus.valueOf(copy.getStatus());
         return new CopyDto(
                 copy.getId(),
-                copy.getBook().getTitle(),
-                copy.getBook().getAuthor(),
                 copy.getBook().getId(),
-                copy.getStatus().toString()
+                copyStatus
         );
     }
 

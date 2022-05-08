@@ -23,5 +23,5 @@ public class Copy {
     private Book book;
 
     @Column(name = "status")
-    private CopyStatus status;
+    private String status;
 }

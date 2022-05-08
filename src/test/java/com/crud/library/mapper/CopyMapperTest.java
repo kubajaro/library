@@ -22,7 +22,7 @@ class CopyMapperTest {
     @Test
     void mapToCopy() {
         //given
-        CopyDto copyDto = new CopyDto(1, "A", "A", 1, "AVAILABLE");
+        CopyDto copyDto = new CopyDto(1, 1, CopyStatus.AVAILABLE);
         Book book = new Book(1, "A","A", 1992);
 
         //when
@@ -30,21 +30,20 @@ class CopyMapperTest {
 
         //then
         assertEquals(book, result.getBook());
-        assertEquals(copyDto.getStatus(), CopyStatus.AVAILABLE.toString());
+        assertEquals(result.getStatus(), CopyStatus.AVAILABLE.toString());
     }
 
     @Test
     void mapToCopyDto() {
         //given
         Book book = new Book(1, "A","A", 1992);
-        Copy copy = new Copy(1, book, CopyStatus.AVAILABLE);
+        Copy copy = new Copy(1, book, "AVAILABLE");
 
         //when
         CopyDto result = copyMapper.mapToCopyDto(copy);
 
         //then
-        assertEquals(copy.getStatus().toString(), result.getStatus());
-        assertEquals(book.getTitle(), result.getBookTitle());
+        assertEquals(copy.getStatus(), result.getStatus().toString());
     }
 
     @Test
@@ -53,8 +52,8 @@ class CopyMapperTest {
         List<Copy> copies = new ArrayList<>();
         Book book = new Book(1, "A","A", 1992);
         Book book2 = new Book(2, "B","C", 1991);
-        copies.add(new Copy(1, book, CopyStatus.AVAILABLE));
-        copies.add(new Copy(2, book2, CopyStatus.BORROWED));
+        copies.add(new Copy(1, book, "AVAILABLE"));
+        copies.add(new Copy(2, book2, "BORROWED"));
 
         //when
         List<CopyDto> result = copyMapper.mapToCopyDtoList(copies);

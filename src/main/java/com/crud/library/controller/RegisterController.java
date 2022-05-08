@@ -4,6 +4,7 @@ import com.crud.library.dto.RegisterDto;
 import com.crud.library.entities.Copy;
 import com.crud.library.entities.Reader;
 import com.crud.library.entities.Register;
+import com.crud.library.exception.ObjectNotFoundException;
 import com.crud.library.mapper.RegisterMapper;
 import com.crud.library.service.CopyService;
 import com.crud.library.service.ReaderService;
@@ -26,7 +27,7 @@ public class RegisterController {
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createRegister(@RequestBody RegisterDto registerDto) throws Exception {
+    public ResponseEntity<Void> createRegister(@RequestBody RegisterDto registerDto) throws ObjectNotFoundException {
         Copy copy = copyService.findById(registerDto.getCopyId());
         Reader reader = readerService.getReader(registerDto.getReaderId());
         Register register = registerMapper.mapToRegister(registerDto, copy, reader);
@@ -37,7 +38,7 @@ public class RegisterController {
     }
 
     @PutMapping
-    public ResponseEntity<RegisterDto> returnBook(@RequestBody RegisterDto registerDto) throws Exception {
+    public ResponseEntity<RegisterDto> returnBook(@RequestBody RegisterDto registerDto) throws ObjectNotFoundException {
         Copy copy = copyService.findById(registerDto.getCopyId());
         Reader reader = readerService.getReader(registerDto.getReaderId());
         Register register = registerMapper.mapToRegister(registerDto, copy, reader);

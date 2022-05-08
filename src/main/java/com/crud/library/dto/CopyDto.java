@@ -1,5 +1,6 @@
 package com.crud.library.dto;
 
+import com.crud.library.enumvalues.CopyStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CopyDto {
     private int id;
-    private String bookTitle;
-    private String author;
     private int bookId;
-    private String status;
+    private CopyStatus status;
 }

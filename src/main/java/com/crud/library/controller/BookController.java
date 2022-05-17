@@ -1,10 +1,7 @@
 package com.crud.library.controller;
 
+import com.crud.library.controller.service.BookControllerService;
 import com.crud.library.dto.BookDto;
-import com.crud.library.entities.Book;
-import com.crud.library.mapper.BookMapper;
-import com.crud.library.repository.BookRepository;
-import com.crud.library.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin("*")
 public class BookController {
 
-    private final BookService service;
-    private final BookMapper bookMapper;
+    private final BookControllerService bookControllerService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createBook(@RequestBody BookDto bookDto) {
-        Book book = bookMapper.mapToBook(bookDto);
-        service.saveBook(book);
+        bookControllerService.createBook(bookDto);
         return ResponseEntity.ok().build();
     }
 }
